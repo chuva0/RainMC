@@ -1,0 +1,26 @@
+name: RainMc
+author: Ninjinha__
+api-version: 1.16
+version: 1.0
+main: pldo0.Pldozero
+commands:
+  magnata:
+  rankup:
+  ranks:
+  money:
+  grupo:
+  bc:
+  kit:
+  kits:
+  blocos:
+  tempo:
+  maquina:
+  maquinas:
+  combustivel:
+  tell:
+  s:
+  forcegrupo:
+  tempos:
+  terreno:
+  punir:
+  despunir:
