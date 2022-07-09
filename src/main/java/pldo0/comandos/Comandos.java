@@ -612,13 +612,13 @@ public class Comandos extends SaldoManager implements CommandExecutor {
                 return true;
             }
             if (args.length == 0) {
-                player.sendMessage(ChatColor.GREEN + "Use /despunir (jogador)     [Usado apenas para remover banimento]");
+                player.sendMessage(ChatColor.GREEN + "Use /despunir (jogador)");
                 return true;
             }
             if (args.length == 1) {
                 String target = args[0];
-                if (!PunishmentManager.isBan(target)) {
-                    player.sendMessage(ChatColor.RED + "Este jogador nao esta banido!");
+                if ((!PunishmentManager.isBan(target) && !PunishmentManager.isMute(target))) {
+                    player.sendMessage(ChatColor.RED + "Este jogador nao tem nenhuma punicao!");
                     return true;
                 }
                 PunishmentManager.punish.getConfig().set("Player." + target, null);

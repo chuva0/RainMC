@@ -17,6 +17,7 @@ import pldo0.kits.KitInventory;
 import pldo0.maquinas.MaquinaInventory;
 import pldo0.maquinas.MaquinaManager;
 import pldo0.punish.PunishmentInventory;
+import pldo0.punish.PunishmentManager;
 import pldo0.ranks.RanksInvetory;
 
 import java.util.Arrays;
@@ -42,6 +43,7 @@ public class Pldozero extends JavaPlugin {
         comandos();
 
         checkTempGroup();
+        checkTempoPunish();
 
         MaquinaManager.loadArmorStands();
         MaquinaManager.workingParticle();
@@ -53,22 +55,56 @@ public class Pldozero extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                for(String on : getRankConfig().getConfig().getConfigurationSection("Player").getKeys(false)) {
-                    if (getRankConfig().getConfig().getBoolean("Player." + on + ".hasTempo")) {
-                        long time = getRankConfig().getConfig().getLong("Player." + on + ".Tempo");
-                        if (time <= System.currentTimeMillis()) {
-                            new GrupoManager().setGroupPlayer(on, Grupos.valueOf(
-                                    getRankConfig().getConfig().getString("Player." + on + ".LastGrupo")
-                            ));
-                            getRankConfig().getConfig().set("Player." + on + ".LastGrupo", null);
-                            getRankConfig().getConfig().set("Player." + on + ".hasTempo", false);
-                            getRankConfig().getConfig().set("Player." + on + ".Tempo", null);
-                            getRankConfig().saveConfig();
-                            for (Player onn : Bukkit.getOnlinePlayers()) {
-                                if (onn.getName().equals(on)) {
-                                    onn.sendMessage(ChatColor.GREEN + "Seu grupo atual expirou! Setado como " + new GrupoManager().getGroup(on).getPrefix() + ChatColor.GREEN + " novamente!");
-                                    new GrupoManager().entryTeam(onn);
+
+                if (getRankConfig().getConfig().getConfigurationSection("Player")!=null) {
+                    for(String on : getRankConfig().getConfig().getConfigurationSection("Player").getKeys(false)) {
+                        if (on==null) {
+                            return;
+                        }
+                        if (getRankConfig().getConfig().getBoolean("Player." + on + ".hasTempo")) {
+                            long time = getRankConfig().getConfig().getLong("Player." + on + ".Tempo");
+                            if (time <= System.currentTimeMillis()) {
+                                new GrupoManager().setGroupPlayer(on, Grupos.valueOf(
+                                        getRankConfig().getConfig().getString("Player." + on + ".LastGrupo")
+                                ));
+                                getRankConfig().getConfig().set("Player." + on + ".LastGrupo", null);
+                                getRankConfig().getConfig().set("Player." + on + ".hasTempo", false);
+                                getRankConfig().getConfig().set("Player." + on + ".Tempo", null);
+                                getRankConfig().saveConfig();
+                                for (Player onn : Bukkit.getOnlinePlayers()) {
+                                    if (onn.getName().equals(on)) {
+                                        onn.sendMessage(ChatColor.GREEN + "Seu grupo atual expirou! Setado como " + new GrupoManager().getGroup(on).getPrefix() + ChatColor.GREEN + " novamente!");
+                                        new GrupoManager().entryTeam(onn);
+                                    }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }.runTaskTimer(this, 0l, 20l);
+    }
+    public void checkTempoPunish() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (getPunishConfig().getConfig().getConfigurationSection("Player") != null) {
+                    for(String on : getPunishConfig().getConfig().getConfigurationSection("Player").getKeys(false)) {
+                        if (on==null) {
+                            return;
+                        }
+                        if (getPunishConfig().getConfig().getBoolean("Player." + on + ".Banido.Value")) {
+                            long time = PunishmentManager.getTempoConfigBan(on);
+                            if (time <= System.currentTimeMillis()) {
+                                PunishmentManager.punish.getConfig().set("Player." + on + ".Banido.Value", false);
+                                PunishmentManager.punish.saveConfig();
+                            }
+                        }
+                        if (getPunishConfig().getConfig().getBoolean("Player." + on + ".Mutado.Value")) {
+                            long time = PunishmentManager.getTempoConfigMute(on);
+                            if (time <= System.currentTimeMillis()) {
+                                PunishmentManager.punish.getConfig().set("Player." + on + ".Mutado.Value", false);
+                                PunishmentManager.punish.saveConfig();
                             }
                         }
                     }

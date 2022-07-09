@@ -39,18 +39,20 @@ public class Eventos extends SaldoManager implements Listener {
     void join(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         event.setJoinMessage(null);
-        if (PunishmentManager.isBan(player.getName())) {
-            if (PunishmentManager.getTempoConfig(player.getName()) == 0) {
-                player.kickPlayer(org.bukkit.ChatColor.RED + "[Banimento]\n\n"
-                        + org.bukkit.ChatColor.GRAY + "Voce foi banido por: " + Reason.BUG.getReason()+
-                        "\n\n"+ org.bukkit.ChatColor.RED + "[Banimento]");
-            } else {
-                player.kickPlayer(org.bukkit.ChatColor.RED + "[Banimento]\n\n"
-                        + org.bukkit.ChatColor.GRAY + "Voce foi banido por: " + Reason.BUG.getReason() + "\n"
-                        + org.bukkit.ChatColor.GRAY + "Tempo: " + KitsItens.formatador(PunishmentManager.getTempo(player.getName())) +
-                        "\n\n"+ org.bukkit.ChatColor.RED + "[Banimento]");
+        if (PunishmentManager.punish.getConfig().contains("Player." + player.getName())) {
+            if (PunishmentManager.isBan(player.getName())) {
+                if (PunishmentManager.getTempoConfigBan(player.getName()) == 0) {
+                    player.kickPlayer(org.bukkit.ChatColor.RED + "[Banimento]\n\n"
+                            + org.bukkit.ChatColor.GRAY + "Voce foi banido por: " + Reason.BUG.getReason()+
+                            "\n\n"+ org.bukkit.ChatColor.RED + "[Banimento]");
+                } else {
+                    player.kickPlayer(org.bukkit.ChatColor.RED + "[Banimento]\n\n"
+                            + org.bukkit.ChatColor.GRAY + "Voce foi banido por: " + Reason.BUG.getReason() + "\n"
+                            + org.bukkit.ChatColor.GRAY + "Tempo: " + KitsItens.formatador(PunishmentManager.getTempo(player.getName())) +
+                            "\n\n"+ org.bukkit.ChatColor.RED + "[Banimento]");
+                }
+                return;
             }
-            return;
         }
         if (!new GrupoManager().existPlayer(player)) {
             new GrupoManager().createPlayer(player);
@@ -143,6 +145,18 @@ public class Eventos extends SaldoManager implements Listener {
     @EventHandler
     void chat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        if (PunishmentManager.isMute(player.getName())) {
+            if (Comandos.rankup.contains(player)) {
+                if (event.getMessage().equalsIgnoreCase("cancelar")) {
+                    event.setCancelled(false);
+                }
+            }
+            if (Comandos.combustivel.contains(player)) {
+                event.setCancelled(false);
+            }
+            player.sendMessage(ChatColor.RED + "Voce esta mutado! Seu mute acaba em " + KitsItens.formatador(PunishmentManager.getTempoMute(player.getName())));
+            event.setCancelled(true);
+        }
         if ((!getTop().isEmpty()) && getTop().equals(player.getName())) {
             String magnata = ColourEffects.gradientEffect("[Magnata]", ColourEffects.getColour(150, 59, 140), ColourEffects.getColour(191, 42, 175));
             if (getGroup(player).equals(Grupos.MEMBRO)) {
@@ -164,15 +178,11 @@ public class Eventos extends SaldoManager implements Listener {
                 player.sendMessage(ChatColor.RED + "Rankup cancelado!");
                 Comandos.rankup.remove(player);
                 event.setCancelled(true);
-            } else {
-                event.setCancelled(false);
             }
             if (Comandos.combustivel.contains(player)) {
                 player.sendMessage(ChatColor.RED + "Compra cancelada!");
                 Comandos.combustivel.remove(player);
                 event.setCancelled(true);
-            } else {
-                event.setCancelled(false);
             }
         }
         if (Comandos.combustivel.contains(player)) {

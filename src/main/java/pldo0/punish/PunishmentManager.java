@@ -29,17 +29,20 @@ public class PunishmentManager {
     public static boolean isBan(String player) {
         return punish.getConfig().getBoolean("Player." + player + ".Banido.Value");
     }
+    public static boolean isMute(String player) {
+        return punish.getConfig().getBoolean("Player." + player + ".Mutado.Value");
+    }
     public static String getReason(String player) {
         return punish.getConfig().getString("Player." + player + ".Banido.Reason");
     }
     public static void mute(String player, Reason reason) {
-        punish.getConfig().set("Player." + player + ".Mutado",true);
+        punish.getConfig().set("Player." + player + ".Mutado.Value",true);
         punish.getConfig().set("Player." + player + ".Mutado.Reason", reason.getReason());
         punish.getConfig().set("Player." + player + ".Mutado.Tempo", 0l);
         punish.saveConfig();
     }
     public static void mute(String player, long time, Reason reason) {
-        punish.getConfig().set("Player." + player + ".Mutado",true);
+        punish.getConfig().set("Player." + player + ".Mutado.Value",true);
         long tempo = System.currentTimeMillis() + time;
         punish.getConfig().set("Player." + player + ".Mutado.Reason", reason.getReason());
         punish.getConfig().set("Player." + player + ".Mutado.Tempo", tempo);
@@ -52,11 +55,21 @@ public class PunishmentManager {
         punish.getConfig().set("Player." + player + ".Warns", getWarnAmount(player)+1);
         punish.saveConfig();
     }
+    public static void setWarn(String player, int amount) {
+        punish.getConfig().set("Player." + player + ".Warns", amount);
+        punish.saveConfig();
+    }
     public static long getTempo(String player) {
         return (punish.getConfig().getLong("Player." + player + ".Banido.Tempo")-System.currentTimeMillis());
     }
-    public static long getTempoConfig(String player) {
+    public static long getTempoMute(String player) {
+        return (punish.getConfig().getLong("Player." + player + ".Mutado.Tempo")-System.currentTimeMillis());
+    }
+    public static long getTempoConfigBan(String player) {
         return punish.getConfig().getLong("Player." + player + ".Banido.Tempo");
+    }
+    public static long getTempoConfigMute(String player) {
+        return punish.getConfig().getLong("Player." + player + ".Mutado.Tempo");
     }
     public static void punishPlayer(String player, Reason reason) {
         switch (reason) {
@@ -83,12 +96,12 @@ public class PunishmentManager {
                if (getWarnAmount(player) < 4) {
                    for (Player on : Bukkit.getOnlinePlayers()) {
                        if (on.getName().equalsIgnoreCase(player)) {
+                           addWarn(player);
                            on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Voce tomou um aviso por: " + Reason.SPAM.getReason());
                            on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Seus avisos: " + ChatColor.RED + getWarnAmount(player));
                            on.sendMessage("");
                            on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Depois de 3 avisos, uma punicao e aplicada!");
                            on.sendMessage("");
-                           addWarn(player);
                        }
                    }
                } else {
@@ -96,6 +109,7 @@ public class PunishmentManager {
                    for (Player on : Bukkit.getOnlinePlayers()) {
                        if (on.getName().equalsIgnoreCase(player)) {
                            on.sendMessage(ChatColor.RED + "[Mute] " + ChatColor.GRAY + "Voce foi mutado por: " + Reason.SPAM.getReason());
+                           setWarn(on.getName(), 0);
                        }
                    }
                }
@@ -104,12 +118,12 @@ public class PunishmentManager {
                 if (getWarnAmount(player) < 4) {
                     for (Player on : Bukkit.getOnlinePlayers()) {
                         if (on.getName().equalsIgnoreCase(player)) {
+                            addWarn(player);
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Voce tomou um aviso por: " + Reason.FLOOD.getReason());
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Seus avisos: " + ChatColor.RED + getWarnAmount(player));
                             on.sendMessage("");
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Depois de 3 avisos, uma punicao e aplicada!");
                             on.sendMessage("");
-                            addWarn(player);
                         }
                     }
                 } else {
@@ -117,6 +131,7 @@ public class PunishmentManager {
                     for (Player on : Bukkit.getOnlinePlayers()) {
                         if (on.getName().equalsIgnoreCase(player)) {
                             on.sendMessage(ChatColor.RED + "[Mute] " + ChatColor.GRAY + "Voce foi mutado por: " + Reason.FLOOD.getReason());
+                            setWarn(on.getName(), 0);
                         }
                     }
                 }
@@ -146,12 +161,12 @@ public class PunishmentManager {
                 if (getWarnAmount(player) < 4) {
                     for (Player on : Bukkit.getOnlinePlayers()) {
                         if (on.getName().equalsIgnoreCase(player)) {
+                            addWarn(player);
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Voce tomou um aviso por: " + Reason.DIVULGACAO.getReason());
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Seus avisos: " + ChatColor.RED + getWarnAmount(player));
                             on.sendMessage("");
                             on.sendMessage(ChatColor.RED + "[Aviso] " + ChatColor.GRAY + "Depois de 3 avisos, uma punicao e aplicada!");
                             on.sendMessage("");
-                            addWarn(player);
                         }
                     }
                 } else {
@@ -159,6 +174,7 @@ public class PunishmentManager {
                     for (Player on : Bukkit.getOnlinePlayers()) {
                         if (on.getName().equalsIgnoreCase(player)) {
                             on.sendMessage(ChatColor.RED + "[Mute] " + ChatColor.GRAY + "Voce foi mutado por: " + Reason.DIVULGACAO.getReason());
+                            setWarn(on.getName(), 0);
                         }
                     }
                 }

@@ -71,12 +71,14 @@ public class PunishmentInventory implements Listener {
                         PunishmentManager.punishPlayer(target, e);
                         player.sendMessage(ChatColor.GREEN + "Voce puniu " + target + ", motivo: " + e.getReason());
                         for (Player on : Bukkit.getOnlinePlayers()) {
-                            on.sendMessage(ChatColor.RED + "                      [Banimento]");
-                            on.sendMessage(ChatColor.RED + "");
-                            on.sendMessage(ChatColor.GRAY + "O jogador " + ChatColor.WHITE + target + ChatColor.GRAY + " foi banido por " + ChatColor.RED + e.getReason());
-                            on.sendMessage(ChatColor.GRAY + "");
-                            on.sendMessage(ChatColor.RED + "                      [Banimento]");
-                            on.playSound(on.getLocation(), Sound.BLOCK_ANVIL_USE, 1f, 1f);
+                           if (!on.getName().equalsIgnoreCase(target)) {
+                               on.sendMessage(ChatColor.RED + "                      [Punicao]");
+                               on.sendMessage(ChatColor.RED + "");
+                               on.sendMessage(ChatColor.GRAY + "O jogador " + ChatColor.WHITE + target + ChatColor.GRAY + " foi punido por " + ChatColor.RED + e.getReason());
+                               on.sendMessage(ChatColor.GRAY + "");
+                               on.sendMessage(ChatColor.RED + "                      [Punicao]");
+                               on.playSound(on.getLocation(), Sound.BLOCK_ANVIL_USE, 1f, 1f);
+                           }
                         }
                     }
                 }
