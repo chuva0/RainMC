@@ -135,34 +135,34 @@ public class KitsItens extends KitManager{
 
         ArrayList<ItemStack> itens = new ArrayList<>();
 
-        itens.add(new BukkitItemStack(Material.DIAMOND_SWORD).setDisplayName(ChatColor.GREEN + "Espada " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_SWORD).setDisplayName(ChatColor.GREEN + "Espada " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.DAMAGE_ALL, 7)
                         .addEnchantment(Enchantment.DURABILITY, 7)
                         .addEnchantment(Enchantment.FIRE_ASPECT, 3)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_HELMET).setDisplayName(ChatColor.GREEN + "Capacete " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_HELMET).setDisplayName(ChatColor.GREEN + "Capacete " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 7)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 7)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_CHESTPLATE).setDisplayName(ChatColor.GREEN + "Colete " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_CHESTPLATE).setDisplayName(ChatColor.GREEN + "Colete " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 7)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 7)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_LEGGINGS).setDisplayName(ChatColor.GREEN + "Calça " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_LEGGINGS).setDisplayName(ChatColor.GREEN + "Calça " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 7)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 7)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_BOOTS).setDisplayName(ChatColor.GREEN + "Botas " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_BOOTS).setDisplayName(ChatColor.GREEN + "Botas " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 7)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 7)
                 .addEnchantment(Enchantment.PROTECTION_FALL, 7)
                 .finish());
         itens.add(new BukkitItemStack(Material.ENCHANTED_GOLDEN_APPLE, 36).setDisplayName(ChatColor.GREEN + "Maça dourada " + Grupos.CHUVA.getPrefix()).finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_PICKAXE).setDisplayName(ChatColor.GREEN + "Picareta " + Grupos.CHUVA.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_PICKAXE).setDisplayName(ChatColor.GREEN + "Picareta " + Grupos.CHUVA.getPrefix())
                 .addEnchantment(Enchantment.DIG_SPEED, 7).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 7).addEnchantment(Enchantment.DURABILITY, 7).finish());
         itens.add(new BukkitItemStack(Material.DARK_OAK_WOOD, 64).setDisplayName(ChatColor.GREEN + "Madeira " + Grupos.CHUVA.getPrefix()).finish());
         itens.add(new BukkitItemStack(Material.DARK_OAK_WOOD, 64).setDisplayName(ChatColor.GREEN + "Madeira " + Grupos.CHUVA.getPrefix()).finish());
@@ -174,34 +174,34 @@ public class KitsItens extends KitManager{
 
         ArrayList<ItemStack> itens = new ArrayList<>();
 
-        itens.add(new BukkitItemStack(Material.DIAMOND_SWORD).setDisplayName(ChatColor.GREEN + "Espada " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_SWORD).setDisplayName(ChatColor.GREEN + "Espada " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.DAMAGE_ALL, 9)
                         .addEnchantment(Enchantment.DURABILITY, 9)
                         .addEnchantment(Enchantment.FIRE_ASPECT, 3)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_HELMET).setDisplayName(ChatColor.GREEN + "Capacete " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_HELMET).setDisplayName(ChatColor.GREEN + "Capacete " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 9)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 9)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 9)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_CHESTPLATE).setDisplayName(ChatColor.GREEN + "Colete " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_CHESTPLATE).setDisplayName(ChatColor.GREEN + "Colete " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 9)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 9)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 9)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_LEGGINGS).setDisplayName(ChatColor.GREEN + "Calça " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_LEGGINGS).setDisplayName(ChatColor.GREEN + "Calça " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 9)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 9)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 9)
                 .finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_BOOTS).setDisplayName(ChatColor.GREEN + "Botas " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_BOOTS).setDisplayName(ChatColor.GREEN + "Botas " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 9)
                 .addEnchantment(Enchantment.PROTECTION_FIRE, 9)
                 .addEnchantment(Enchantment.PROTECTION_PROJECTILE, 9)
                 .addEnchantment(Enchantment.PROTECTION_FALL, 8)
                 .finish());
         itens.add(new BukkitItemStack(Material.ENCHANTED_GOLDEN_APPLE, 56).setDisplayName(ChatColor.GREEN + "Maça dourada " + Grupos.TEMPESTADE.getPrefix()).finish());
-        itens.add(new BukkitItemStack(Material.DIAMOND_PICKAXE).setDisplayName(ChatColor.GREEN + "Picareta " + Grupos.TEMPESTADE.getPrefix())
+        itens.add(new BukkitItemStack(Material.NETHERITE_PICKAXE).setDisplayName(ChatColor.GREEN + "Picareta " + Grupos.TEMPESTADE.getPrefix())
                 .addEnchantment(Enchantment.DIG_SPEED, 9).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 9).addEnchantment(Enchantment.DURABILITY, 9).finish());
         itens.add(new BukkitItemStack(Material.DARK_OAK_WOOD, 64).setDisplayName(ChatColor.GREEN + "Madeira " + Grupos.TEMPESTADE.getPrefix()).finish());
         itens.add(new BukkitItemStack(Material.DARK_OAK_WOOD, 64).setDisplayName(ChatColor.GREEN + "Madeira " + Grupos.TEMPESTADE.getPrefix()).finish());
