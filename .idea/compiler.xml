@@ -9,5 +9,8 @@
         <module name="PluginDo0" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PluginDo0" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
