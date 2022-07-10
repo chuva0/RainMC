@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="PluginDo0:jar">
-    <output-path>D:/Minecraft/Servidor plugindo0/plugins</output-path>
-    <root id="archive" name="PluginDo0.jar">
-      <element id="module-output" name="PluginDo0" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-    </root>
-  </artifact>
-</component>
